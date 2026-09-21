@@ -17,6 +17,14 @@ pipeline {
             }
         }
 
+        stage('Credentials Test') {
+            steps {
+                withCredentials([string(credentialsId: 'practice-secret', variable: 'MY_SECRET')]) {
+                    sh 'echo "Credential received successfully"'
+                }
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying from Jenkinsfile'
